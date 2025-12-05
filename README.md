@@ -1,116 +1,124 @@
-🧠 Narrative Nexus
+# 🧠 Narrative Nexus
 
-A simple yet powerful text-analysis app built with Flask + Transformers + Vanilla JS that lets you:
+A simple yet powerful web app built with **FastAPI + Transformers + Vanilla JS** that lets you:
 
-🧹 Clean raw text or HTML content
+- 🧹 Clean raw text or HTML content (using NLTK + BeautifulSoup)
+- ✂️ Summarize the cleaned text using `facebook/bart-large-cnn`
+- 💬 Analyze the **sentiment** (Positive / Negative / Neutral) of the generated summary
 
-✂️ Summarize the cleaned text
+All in one neat, minimal dark-themed interface.
 
-💬 Analyze sentiment (Positive / Negative / Neutral)
+---
 
-🎨 Access a minimal, premium dark-theme UI
+## 🚀 Features
 
-All in one neat, modern interface.
+- **Drag & Drop Uploads** — upload `.txt` or `.html` files directly  
+- **Instant Cleaning** — removes HTML tags, scripts, and unwanted formatting  
+- **AI-Powered Summarization** — compresses long text into key insights  
+- **Sentiment Analysis** — interprets the emotional tone of the text  
+- **FastAPI Backend** — lightweight and async  
+- **Vanilla JS Frontend** — no frameworks, just clean HTML + JS  
+- **Offline-ready** — supports loading models locally to avoid re-downloads  
 
-🚀 Features
+---
 
-📂 Drag & Drop Uploads — upload .txt or .html files directly
+## 🧩 Project Structure
 
-⚡ Instant Cleaning — removes HTML tags, scripts & unwanted formatting
-
-🤖 AI-Powered Topic Modeling — LDA based topic extraction
-
-😊 Sentiment Analysis — interprets the emotional tone of text
-
-🧠 ML Models Included — trained LDA + vectorizer
-
-🌐 Flask Backend — lightweight and simple
-
-🎨 Clean UI — minimal HTML + CSS
-
-🧩 Modular Code Structure
-
-🗂 Project Structure
-Narrative-Nexus/
-│── static/
-│   ├── css/
-│   ├── js/
-│   └── images/
+├── nexusnarrative/
+│ ├── backend/
+│ │ ├── main.py # FastAPI entry point
+│ │ ├── routes/
+│ │ │ └── text_routes.py # /clean-and-summarize endpoint
+│ │ ├── text_process/
+│ │ │ ├── cleaner.py # Uses NLTK + BeautifulSoup
+│ │ │ └── cleaned/ # Output directory
+│ └── models/ # (optional) local cached transformers models
 │
-│── templates/
-│   ├── index.html
-│   └── result.html
+├── frontend/
+│ └── index.html # Minimal UI
 │
-│── models/
-│   ├── lda_model.pkl
-│   ├── vectorizer.pkl
-│   └── sentiment_model.pkl
-│
-│── train_topic_model.py
-│── sentiment.py
-│── web_app.py
-│── requirements.txt
-│── README.md
+└── requirements.txt
 
-⚙️ Backend Setup (Flask)
-1️⃣ Create & activate a virtual environment
-python -m venv venv
-venv\Scripts\activate   # Windows
+
+---
+
+## ⚙️ Backend Setup (FastAPI)
+
+### 1️⃣ Create and activate a virtual environment
+
+```bash
+uv venv   # install uv using: pip install uv
+source .venv/bin/activate     # on Windows: .venv\Scripts\activate
 
 2️⃣ Install dependencies
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 
-3️⃣ Train the topic model (optional)
-python train_topic_model.py
+3️⃣ Run the backend
+uvicorn backend.main:app --reload
 
-4️⃣ Run the server
-python web_app.py
+Backend now runs at:
+http://127.0.0.1:8000
 
+Example API Endpoint
+POST /text/clean-and-summarize
 
-Backend will run at:
-👉 http://127.0.0.1:5000
-
-🧪 API Endpoint
-POST /analyze
-
-Accepts text and returns:
-
+Response:
 {
-  "topic": "Science—Space",
-  "keywords": ["NASA", "orbit", "planet"],
-  "sentiment": "Positive"
+  "message": "File cleaned, summarized, and analyzed successfully!",
+  "preview": "First 500 chars...",
+  "summary": "AI-generated summary text...",
+  "sentiment": {
+    "label": "POSITIVE",
+    "score": 0.987
+  }
 }
 
-🎨 Frontend Setup
+💻 Frontend Setup
 
-Open templates/index.html
+Open frontend/index.html in your browser.
 
-Upload or paste text
+Ensure the API base URL points to your FastAPI backend:
+<code id="api-url">http://127.0.0.1:8000</code>
 
-Click Analyze to see topic + sentiment results
+Upload or paste text → click Clean, Summarize & Analyze
 
 🧠 How It Works
-🟦 Topic Modeling
 
-Uses LDA to extract the dominant topic from user text.
+Text is cleaned using NLTK + BeautifulSoup
 
-🟩 Sentiment Analysis
+Summary generated using BART (facebook/bart-large-cnn)
 
-Predicts whether the text is Positive / Negative / Neutral.
+Sentiment evaluated using a DistilBERT model
 
-🟥 UI Layer
+Response returns:
 
-Minimal HTML + CSS + JS files render results in a clean layout.
+cleaned preview
 
-📦 Requirements
-flask
-scikit-learn
-nltk
-joblib
+summary
 
-👨‍💻 Author
+sentiment label + confidence score
 
-Sudharsan M
-AI Enthusiast | CSE Final Year
+🗂 Example Output
+Input: 3-page HTML article on global warming
+→ Cleaned: ~4,500 words
+→ Summary: “Global emissions continue to rise as countries struggle to meet Paris targets...”
+→ Sentiment: NEGATIVE (confidence: 98.7%)
 
-GitHub: https://github.com/sudharsansudees
+🏁 Future Enhancements
+
+ Translation support
+
+ Multilingual sentiment detection
+
+ Export results as .txt
+
+ Docker deployment
+
+ 👤 Author
+
+Built for Infosys Internship Project
+Developed by Sudharsan M
+
+📧 Contact: sudharsansudees@gmail.com.com
+
+🔗 GitHub: https://github.com/sudharsansudees
