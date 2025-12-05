@@ -1,68 +1,60 @@
-# 🧠 Narrative Nexus
+🌌 Narrative Nexus — Intelligent Text Exploration
 
-A simple yet powerful web app built with **FastAPI + Transformers + Vanilla JS** that lets you:
+Narrative Nexus is an end-to-end text processing system built using FastAPI, NLTK, BeautifulSoup, and Transformers.
+It cleans raw text or HTML, generates high-quality summaries, and evaluates sentiment — all via a fast API.
 
-- 🧹 Clean raw text or HTML content (using NLTK + BeautifulSoup)
-- ✂️ Summarize the cleaned text using `facebook/bart-large-cnn`
-- 💬 Analyze the **sentiment** (Positive / Negative / Neutral) of the generated summary
+✨ What This Project Does
+🧼 Text Cleaning
 
-All in one neat, minimal dark-themed interface.
+Removes scripts, tags, styles, and unwanted HTML noise.
 
----
+📘 Text Summarization
 
-## 🚀 Features
+Uses facebook/bart-large-cnn for high-quality abstractive summaries.
 
-- **Drag & Drop Uploads** — upload `.txt` or `.html` files directly  
-- **Instant Cleaning** — removes HTML tags, scripts, and unwanted formatting  
-- **AI-Powered Summarization** — compresses long text into key insights  
-- **Sentiment Analysis** — interprets the emotional tone of the text  
-- **FastAPI Backend** — lightweight and async  
-- **Vanilla JS Frontend** — no frameworks, just clean HTML + JS  
-- **Offline-ready** — supports loading models locally to avoid re-downloads  
+💭 Sentiment Analysis
 
----
+Provides emotional tone (Positive / Negative / Neutral) with confidence.
 
-### 🧩 Project Structure
-
-├── nexusnarrative/
-│ ├── backend/
-│ │ ├── main.py # FastAPI entry point
-│ │ ├── routes/
-│ │ │ └── text_routes.py # /clean-and-summarize endpoint
-│ │ ├── text_process/
-│ │ │ ├── cleaner.py # Uses NLTK + BeautifulSoup
-│ │ │ └── cleaned/ # Output directory
-│ └── models/ # (optional) local cached transformers models
+🏗️ Project Structure
+nexusnarrative/
+│
+├── backend/
+│   ├── main.py                 # FastAPI entry point
+│   ├── routes/
+│   │   └── text_routes.py      # API routes
+│   ├── text_process/
+│   │   ├── cleaner.py          # Cleaning logic
+│   │   └── cleaned/            # Saved cleaned files
+│   └── models/                 # Optional cached HF models
 │
 ├── frontend/
-│ └── index.html # Minimal UI
+│   └── index.html              # UI for interacting with the API
 │
 └── requirements.txt
 
+⚙️ Backend Setup (FastAPI)
+1️⃣ Create and activate a virtual environment
+pip install uv
+uv venv
+source .venv/bin/activate       # Windows: .venv\Scripts\activate
 
----
-
-## ⚙️ Backend Setup (FastAPI)
-
-### 1️⃣ Create and activate a virtual environment
-
-```bash
-uv venv   # install uv using: pip install uv
-source .venv/bin/activate     # on Windows: .venv\Scripts\activate
-
-### 2️⃣ Install dependencies
+2️⃣ Install dependencies
 uv pip install -r requirements.txt
 
 3️⃣ Run the backend
 uvicorn backend.main:app --reload
 
-Backend now runs at:
+
+Backend runs at:
+
 http://127.0.0.1:8000
 
-Example API Endpoint
+📡 API Usage
+Endpoint
 POST /text/clean-and-summarize
 
-Response:
+Sample Response
 {
   "message": "File cleaned, summarized, and analyzed successfully!",
   "preview": "First 500 chars...",
@@ -73,52 +65,57 @@ Response:
   }
 }
 
-💻 Frontend Setup
+🎨 Frontend Setup
 
-Open frontend/index.html in your browser.
+Open frontend/index.html
 
-Ensure the API base URL points to your FastAPI backend:
-<code id="api-url">http://127.0.0.1:8000</code>
+Ensure the API URL is correct:
 
-Upload or paste text → click Clean, Summarize & Analyze
+<span id="api-url">http://127.0.0.1:8000</span>
+
+
+Upload or paste text
+
+Click Analyze
 
 🧠 How It Works
 
-Text is cleaned using NLTK + BeautifulSoup
+NLTK cleans and tokenizes text
 
-Summary generated using BART (facebook/bart-large-cnn)
+BeautifulSoup strips HTML elements
 
-Sentiment evaluated using a DistilBERT model
+BART (facebook/bart-large-cnn) creates summaries
 
-Response returns:
+DistilBERT detects sentiment
 
-cleaned preview
+FastAPI connects everything through endpoints
 
-summary
+🧰 Offline Model Usage (Optional)
+from transformers import pipeline
 
-sentiment label + confidence score
+summarizer = pipeline(
+    "summarization",
+    model="facebook/bart-large-cnn",
+    cache_dir="./nexusnarrative/models"
+)
 
-🗂 Example Output
-Input: 3-page HTML article on global warming
-→ Cleaned: ~4,500 words
-→ Summary: “Global emissions continue to rise as countries struggle to meet Paris targets...”
-→ Sentiment: NEGATIVE (confidence: 98.7%)
 
-🏁 Future Enhancements
+Enable:
 
- Translation support
+export TRANSFORMERS_OFFLINE=1
 
- Multilingual sentiment detection
+📘 Roadmap
 
- Export results as .txt
+ Multi-document summarization
+
+ PDF and DOCX ingestion
 
  Docker deployment
 
- 👤 Author
+ Enhanced frontend
 
-Built for Infosys Internship Project
+👤 Author
+
 Developed by Sudharsan M
-
-📧 Contact: sudharsansudees@gmail.com.com
-
-🔗 GitHub: https://github.com/sudharsansudees
+Infosys Internship Project
+GitHub: https://github.com/sudharsansudees
