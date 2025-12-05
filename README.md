@@ -49,5 +49,72 @@ source .venv/bin/activate        # Windows: .venv\Scripts\activate
 uv pip install -r requirements.txt
 ```
 
+## 3️⃣ Start the backend
+```bash
+uvicorn backend.main:app --reload
+```
 
+## Backend runs at:
+```bash
+http://127.0.0.1:8000
+```
+
+## 📡 API Usage
+Endpoint
+```bash
+POST /text/clean-and-summarize
+```
+
+## Sample Response
+```bash
+{
+  "message": "Processed successfully",
+  "preview": "First 500 characters...",
+  "summary": "Generated summary text...",
+  "sentiment": {
+    "label": "POSITIVE",
+    "score": 0.98
+  }
+}
+```
+
+## 🎨 Frontend Usage
+Open frontend/index.html
+
+Make sure the API URL is correct:
+```bash
+<span id="api-url">http://127.0.0.1:8000</span>
+```
+Upload or paste your text
+
+Click Analyze to view cleaned text, summary, and sentiment
+
+## 🧠 How It Works
+
+BeautifulSoup removes HTML tags and unwanted markup
+
+NLTK processes and tokenizes text
+
+BART (facebook/bart-large-cnn) generates summaries
+
+DistilBERT produces sentiment classification
+
+FastAPI manages fast asynchronous API requests
+
+## 🧭 Roadmap
+
+ PDF / DOCX ingestion
+
+ Multi-document summarization
+
+ Improved UI with theme support
+
+ Docker deployment
+
+## 👤 Author
+
+Built by Sudharsan M
+For Infosys Internship Project
+
+GitHub: https://github.com/sudharsansudees
 
