@@ -1,123 +1,116 @@
-📌 Narrative Nexus – Topic Modeling & Sentiment Analysis Platform
+🧠 Narrative Nexus
 
-Narrative Nexus is an end-to-end text analysis platform that performs topic modeling on the 20-Newsgroups dataset and applies sentiment analysis to user-entered text.
-It includes a Flask web interface, a trained ML model, and a premium-style UI for seamless interaction.
+A simple yet powerful text-analysis app built with Flask + Transformers + Vanilla JS that lets you:
+
+🧹 Clean raw text or HTML content
+
+✂️ Summarize the cleaned text
+
+💬 Analyze sentiment (Positive / Negative / Neutral)
+
+🎨 Access a minimal, premium dark-theme UI
+
+All in one neat, modern interface.
 
 🚀 Features
 
-🧠 Topic Modeling using LDA on the 20-Newsgroups dataset
+📂 Drag & Drop Uploads — upload .txt or .html files directly
 
-😊 Sentiment Analysis (Positive / Negative / Neutral)
+⚡ Instant Cleaning — removes HTML tags, scripts & unwanted formatting
 
-🌐 Flask Web Application with modern UI
+🤖 AI-Powered Topic Modeling — LDA based topic extraction
 
-📊 Interactive Results showing topic distribution
+😊 Sentiment Analysis — interprets the emotional tone of text
 
-🏗️ Clean and scalable project structure
+🧠 ML Models Included — trained LDA + vectorizer
 
-💾 Model training script included (train_topic_model.py)
+🌐 Flask Backend — lightweight and simple
 
-🗂️ Project Structure
+🎨 Clean UI — minimal HTML + CSS
+
+🧩 Modular Code Structure
+
+🗂 Project Structure
 Narrative-Nexus/
 │── static/
 │   ├── css/
 │   ├── js/
 │   └── images/
+│
 │── templates/
 │   ├── index.html
 │   └── result.html
+│
 │── models/
 │   ├── lda_model.pkl
 │   ├── vectorizer.pkl
 │   └── sentiment_model.pkl
+│
 │── train_topic_model.py
 │── sentiment.py
 │── web_app.py
-│── README.md
 │── requirements.txt
+│── README.md
 
-🛠️ Technologies Used
-
-Python
-
-Flask
-
-Scikit-learn
-
-NLTK
-
-Joblib
-
-HTML, CSS, JavaScript
-
-🔧 Installation & Setup
-1️⃣ Clone the repository
-git clone https://github.com/your-username/narrative-nexus.git
-cd narrative-nexus
-
-2️⃣ Create and activate a virtual environment
+⚙️ Backend Setup (Flask)
+1️⃣ Create & activate a virtual environment
 python -m venv venv
 venv\Scripts\activate   # Windows
 
-3️⃣ Install dependencies
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
-4️⃣ Train the topic model (optional)
+3️⃣ Train the topic model (optional)
 python train_topic_model.py
 
-5️⃣ Run the web application
+4️⃣ Run the server
 python web_app.py
 
-🌟 How It Works
-1. Topic Modeling
 
-Uses LDA to extract the dominant topic from the text and provide keyword distribution.
+Backend will run at:
+👉 http://127.0.0.1:5000
 
-2. Sentiment Analysis
+🧪 API Endpoint
+POST /analyze
 
-Classifies text into:
+Accepts text and returns:
 
-Positive
+{
+  "topic": "Science—Space",
+  "keywords": ["NASA", "orbit", "planet"],
+  "sentiment": "Positive"
+}
 
-Negative
+🎨 Frontend Setup
 
-Neutral
+Open templates/index.html
 
-3. Web Interface
+Upload or paste text
 
-Users can:
+Click Analyze to see topic + sentiment results
 
-Enter text
+🧠 How It Works
+🟦 Topic Modeling
 
-View extracted topic
+Uses LDA to extract the dominant topic from user text.
 
-View sentiment result
+🟩 Sentiment Analysis
 
-📸 UI Preview
+Predicts whether the text is Positive / Negative / Neutral.
 
-(Add images when you upload screenshots)
+🟥 UI Layer
+
+Minimal HTML + CSS + JS files render results in a clean layout.
 
 📦 Requirements
-
-See requirements.txt
-Typical libraries include:
-
 flask
 scikit-learn
-joblib
 nltk
-
-🤝 Contributing
-
-Pull requests are welcome!
-For major updates, please open an issue to discuss changes.
-
-📄 License
-
-MIT License
+joblib
 
 👨‍💻 Author
 
 Sudharsan M
-Final Year CSE | AI Enthusiast
+AI Enthusiast | CSE Final Year
+
 GitHub: https://github.com/sudharsansudees
