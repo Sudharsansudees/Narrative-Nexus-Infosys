@@ -33,3 +33,21 @@ nexusnarrative/
 │   └── index.html              # Simple UI for interacting with the API
 │
 └── requirements.txt
+
+```
+## ⚙️ Backend Setup (FastAPI)
+
+## 1️⃣ Create and activate a virtual environment
+```bash
+pip install uv
+uv venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+```
+
+## 2️⃣ Install dependencies
+```bash
+uv pip install -r requirements.txt
+```
+
+
+
