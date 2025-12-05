@@ -50,7 +50,7 @@ All in one neat, minimal dark-themed interface.
 uv venv   # install uv using: pip install uv
 source .venv/bin/activate     # on Windows: .venv\Scripts\activate
 
-2️⃣ Install dependencies
+### 2️⃣ Install dependencies
 uv pip install -r requirements.txt
 
 3️⃣ Run the backend
