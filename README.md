@@ -22,7 +22,7 @@ All in one neat, minimal dark-themed interface.
 
 ---
 
-## 🧩 Project Structure
+### 🧩 Project Structure
 
 ├── nexusnarrative/
 │ ├── backend/
